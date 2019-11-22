@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.main.MainActivity">
+
+    <fragment
+        android:id="@+id/topFragment"
+        android:name="com.kanawish.recordstore.ui.main.MainTopFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        tools:layout="@layout/main_fragment" />
+
+    <fragment
+        android:id="@+id/bottomFragment"
+        android:name="com.kanawish.recordstore.ui.main.MainBottomFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        tools:layout="@layout/main_fragment" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <fragment
+            android:id="@+id/dupeFragmentA"
+            android:name="com.kanawish.recordstore.ui.duped.DupedFragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:layout="@layout/dupe_fragment" />
+
+        <fragment
+            android:id="@+id/dupeFragmentB"
+            android:name="com.kanawish.recordstore.ui.duped.DupedFragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:layout="@layout/dupe_fragment" />
+
+        <fragment
+            android:id="@+id/dupeFragmentC"
+            android:name="com.kanawish.recordstore.ui.duped.DupedFragment"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            tools:layout="@layout/dupe_fragment" />
+    </LinearLayout>
+</LinearLayout>
