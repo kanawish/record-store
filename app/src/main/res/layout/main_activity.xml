@@ -1,56 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.main.RecordEditActivity">
 
     <fragment
-        android:id="@+id/topFragment"
-        android:name="com.kanawish.recordstore.ui.main.MainTopFragment"
+        android:id="@+id/headerFragment"
+        android:name="com.kanawish.recordstore.ui.main.HeaderFragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        tools:layout="@layout/main_fragment" />
+        android:layout_height="wrap_content"
+        tools:layout="@layout/record_header" />
 
     <fragment
-        android:id="@+id/bottomFragment"
-        android:name="com.kanawish.recordstore.ui.main.MainBottomFragment"
+        android:id="@+id/editablesFragment"
+        android:name="com.kanawish.recordstore.ui.main.EditablesFragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        tools:layout="@layout/main_fragment" />
+        android:layout_height="wrap_content"
+        tools:layout="@layout/record_editables" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:baselineAligned="false">
 
         <fragment
-            android:id="@+id/dupeFragmentA"
-            android:name="com.kanawish.recordstore.ui.duped.DupedFragment"
+            android:id="@+id/priceControlsFragment"
+            android:name="com.kanawish.recordstore.ui.controls.CounterControlsFragment"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            tools:layout="@layout/dupe_fragment" />
+            tools:layout="@layout/controls_counter" />
 
         <fragment
-            android:id="@+id/dupeFragmentB"
-            android:name="com.kanawish.recordstore.ui.duped.DupedFragment"
+            android:id="@+id/inventoryControlsFragment"
+            android:name="com.kanawish.recordstore.ui.controls.CounterControlsFragment"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            tools:layout="@layout/dupe_fragment" />
-
-        <fragment
-            android:id="@+id/dupeFragmentC"
-            android:name="com.kanawish.recordstore.ui.duped.DupedFragment"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            tools:layout="@layout/dupe_fragment" />
+            tools:layout="@layout/controls_counter" />
     </LinearLayout>
+
+    <fragment
+        android:id="@+id/contolsPersistence"
+        android:name="com.kanawish.recordstore.ui.controls.PersistenceControlsFragment"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        tools:layout="@layout/controls_persistence"/>
+
 </LinearLayout>

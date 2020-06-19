@@ -5,12 +5,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.kanawish.recordstore.di.scope.ActivityVMScope
 import com.kanawish.recordstore.di.scope.ApplicationScope
-import com.kanawish.recordstore.module.FragmentModule
-import com.kanawish.recordstore.module.FragmentVMModule
+import com.kanawish.recordstore.di.module.FragmentModule
+import com.kanawish.recordstore.di.module.FragmentVMModule
 import toothpick.InjectConstructor
 import toothpick.config.Module
 import toothpick.ktp.KTP
-import toothpick.ktp.delegate.inject
 import toothpick.smoothie.lifecycle.closeOnDestroy
 import toothpick.smoothie.viewmodel.ViewModelUtil
 import toothpick.smoothie.viewmodel.closeOnViewModelCleared
@@ -38,7 +37,7 @@ class ToothpickFragmentLifecycleCallbacks(
         parentScope
             .openSubScope(vmScopeName) { scope ->
                 if (fragment is ViewModelBinding) {
-                    for (clazz in fragment.viewModelDependencies) {
+                    for (clazz in fragment.viewModelBindings()) {
                         ViewModelUtil.installViewModelBinding(scope, fragment, clazz, null)
                     }
                 }

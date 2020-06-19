@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/dashed_border"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.HeaderFragment">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/margin-left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/margin-right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/padding-top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/albumCover"
+        android:src="@drawable/cover_nirvana_unplugged"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toStartOf="@+id/titleTextView"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toStartOf="@+id/margin-left"
+        app:layout_constraintTop_toTopOf="@+id/padding-top"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/exampleTitle"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/descriptionTextView"
+        app:layout_constraintEnd_toStartOf="@+id/margin-right"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/descriptionTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/roboto"
+        android:text="@string/exampleDescription"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/margin-right"
+        app:layout_constraintStart_toStartOf="@+id/titleTextView"
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,21 +6,18 @@ import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import com.kanawish.recordstore.di.scope.ActivityVMScope
 import com.kanawish.recordstore.di.scope.ApplicationScope
-import com.kanawish.recordstore.module.ActivityModule
-import com.kanawish.recordstore.module.ActivityVMModule
+import com.kanawish.recordstore.di.module.ActivityModule
+import com.kanawish.recordstore.di.module.ActivityVMModule
 import toothpick.InjectConstructor
 import toothpick.config.Module
 import toothpick.ktp.KTP
-import toothpick.ktp.delegate.inject
 import toothpick.smoothie.lifecycle.closeOnDestroy
 import toothpick.smoothie.module.SmoothieAndroidXActivityModule
 import toothpick.smoothie.viewmodel.ViewModelUtil
 import toothpick.smoothie.viewmodel.closeOnViewModelCleared
-import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
-@InjectConstructor
+@Singleton @InjectConstructor
 class ToothpickActivityLifecycleCallbacks(
     @ActivityVMModule val activityVMModule:Module,
     @ActivityModule val activityModule:Module,
@@ -32,7 +29,7 @@ class ToothpickActivityLifecycleCallbacks(
             KTP.openScope(ApplicationScope::class.java)
                 .openSubScope(ActivityVMScope::class.java) { scope ->
                     if(activity is ViewModelBinding) {
-                        for(clazz in activity.viewModelDependencies) {
+                        for(clazz in activity.viewModelBindings()) {
                             ViewModelUtil.installViewModelBinding(scope, activity, clazz, null)
                         }
                     }

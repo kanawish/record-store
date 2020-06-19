@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">RecordStore</string>
+    <string name="appName">RecordStore</string>
+    <string name="exampleDescription">MTV Unplugged in New York is a live album by American rock band Nirvana. It was released on November 1, 1994 by DGC Records. The album features an acoustic performance recorded at Sony Music Studios in New York City on November 18, 1993, for the television series MTV Unplugged. The show was directed by Beth McCarthy and aired on the cable television network MTV on December 16, 1993. In a break with traditional practice on the television series, Nirvana played mainly lesser-known material and cover versions of songs by the Vaselines, David Bowie, Lead Belly, and Meat Puppets, whose Cris and Curt Kirkwood joined Nirvana onstage.</string>
+    <string name="exampleTitle">MTV Unplugged in New York</string>
+    <string name="albumCover">Album cover</string>
+    <string name="increment">+</string>
+    <string name="decrement">-</string>
+    <string name="placeholderControlsLabel">Controls label</string>
+    <string name="persistButton">Persist</string>
+    <string name="fragment">Fragment</string>
+    <string name="dupedFragment">DupedFragment</string>
 </resources>

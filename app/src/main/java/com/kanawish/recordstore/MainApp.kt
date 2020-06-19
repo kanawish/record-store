@@ -3,22 +3,34 @@ package com.kanawish.recordstore
 import android.app.Application
 import com.kanawish.recordstore.di.ToothpickActivityLifecycleCallbacks
 import com.kanawish.recordstore.di.scope.ApplicationScope
-import com.kanawish.recordstore.module.ActivityModule
-import com.kanawish.recordstore.module.ActivityVMModule
-import com.kanawish.recordstore.module.FragmentModule
-import com.kanawish.recordstore.module.FragmentVMModule
+import com.kanawish.recordstore.di.module.ActivityModule
+import com.kanawish.recordstore.di.module.ActivityVMModule
+import com.kanawish.recordstore.di.module.FragmentModule
+import com.kanawish.recordstore.di.module.FragmentVMModule
+import com.kanawish.recordstore.model.backend.EditorModelModule
 import com.kanawish.recordstore.timber.CrashReportingTree
 import timber.log.Timber
+import toothpick.InjectConstructor
 import toothpick.Scope
+import toothpick.Toothpick
 import toothpick.config.Module
 import toothpick.ktp.KTP
 import toothpick.ktp.binding.bind
 import toothpick.ktp.binding.module
 import toothpick.ktp.delegate.inject
 import toothpick.smoothie.module.SmoothieApplicationModule
+import javax.inject.Inject
+
+// TP2
+class FooTP2 @Inject constructor(bar:String)
+
+@InjectConstructor
+class FooTP3(bar:String)
 
 class MainApp : Application() {
-    private val activityLifecycleCallbacks: ToothpickActivityLifecycleCallbacks by inject()
+
+    @Inject lateinit var activityLifecycleCallbacks: ToothpickActivityLifecycleCallbacks
+//    private val activityLifecycleCallbacks: ToothpickActivityLifecycleCallbacks by inject()
 
     // These modules will be installed into their matching scope.
     private val activityVMModule = module {}
@@ -47,9 +59,14 @@ class MainApp : Application() {
             Timber.plant(CrashReportingTree());
         }
 
+    Toothpick.openRootScope().installModules()
         scope = KTP
             .openScope(ApplicationScope::class.java)
-            .installModules(SmoothieApplicationModule(this), appModule)
+            .installModules(
+                    SmoothieApplicationModule(this),
+                    appModule,
+                    EditorModelModule
+            )
         scope.inject(this)
 
         registerActivityLifecycleCallbacks(activityLifecycleCallbacks)
