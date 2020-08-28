@@ -1,2 +1,3 @@
-rootProject.name='RecordStore'
-include ':app'
+rootProject.name = "RecordStore"
+include (":app")
+include (":compose")

@@ -3,13 +3,20 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+Properties keys = new Properties()
+try {
+    keys.load(file('keys.properties').newDataInputStream())
+} catch (Exception ignored) {
+    throw new GradleException("Missing keys.properties file.");
+}
+
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion 30
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.kanawish.recordstore"
         minSdkVersion 24
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -30,12 +37,12 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-rc02'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.core:core-ktx:1.3.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0-alpha07'
 
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
@@ -47,9 +54,9 @@ dependencies {
     kapt 'com.github.stephanenicolas.toothpick:toothpick-compiler:3.1.0'
 
     // GraphQL
-    implementation "com.apollographql.apollo:apollo-runtime:$apollo_version"
+    implementation "com.apollographql.apollo:apollo-runtime:2.3.1"
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     testImplementation 'com.github.stephanenicolas.toothpick:toothpick-testing-junit4:3.1.0'
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
