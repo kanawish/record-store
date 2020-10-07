@@ -1,8 +1,8 @@
 package com.kanawish.recordstore
 
 import android.app.Application
-import com.kanawish.recordstore.di.ToothpickActivityLifecycleCallbacks
-import com.kanawish.recordstore.di.scope.ApplicationScope
+import com.kanawish.common.di.ToothpickActivityLifecycleCallbacks
+import com.kanawish.common.di.scope.ApplicationScope
 import com.kanawish.recordstore.module.ActivityModule
 import com.kanawish.recordstore.module.ActivityVMModule
 import com.kanawish.recordstore.module.FragmentModule

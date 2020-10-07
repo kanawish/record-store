@@ -4,9 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModel
 import com.kanawish.recordstore.R
-import com.kanawish.recordstore.di.ViewModelBinding
+import com.kanawish.common.di.ViewModelBinding
 import toothpick.ktp.delegate.inject
-import toothpick.ktp.delegate.lazy
 
 class MainActivity : AppCompatActivity(), ViewModelBinding {
     override val viewModelDependencies: Array<Class<out ViewModel>> = arrayOf(MainActivityViewModel::class.java)

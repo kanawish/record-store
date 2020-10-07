@@ -8,8 +8,8 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import com.kanawish.recordstore.R
-import com.kanawish.recordstore.di.CustomVMScopeName
-import com.kanawish.recordstore.di.ViewModelBinding
+import com.kanawish.common.di.CustomVMScopeName
+import com.kanawish.common.di.ViewModelBinding
 import com.kanawish.recordstore.ui.foo.BarViewModel
 import com.kanawish.recordstore.ui.foo.FooViewModel
 import timber.log.Timber

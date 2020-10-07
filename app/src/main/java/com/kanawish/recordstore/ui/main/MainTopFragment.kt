@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import com.kanawish.recordstore.R
-import com.kanawish.recordstore.di.ViewModelBinding
+import com.kanawish.common.di.ViewModelBinding
 import com.kanawish.recordstore.ui.duped.DupedViewModel
 import timber.log.Timber
 import toothpick.ktp.delegate.inject
