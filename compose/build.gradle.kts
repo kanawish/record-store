@@ -9,7 +9,7 @@ plugins {
     kotlin("kapt")
 }
 
-val composeVersion = "1.0.0-alpha03"
+val composeVersion = "1.0.0-alpha04"
 val coroutinesVersion = "1.3.9"
 val lifecycle_version = "2.2.0"
 
@@ -57,6 +57,7 @@ dependencies {
     implementation("com.jakewharton.rxrelay2:rxrelay:2.1.0") // https://github.com/JakeWharton/RxRelay/blob/master/CHANGELOG.md
 
     // Networking
+    implementation( "dev.chrisbanes.accompanist:accompanist-coil:0.3.0") // https://github.com/chrisbanes/accompanist/blob/main/coil/README.md
     implementation("com.squareup.picasso:picasso:2.71828") // https://github.com/square/picasso
 
     // Firebase
