@@ -38,6 +38,8 @@ dependencies {
     implementation("androidx.compose.material:material:$composeVersion")
     implementation("androidx.compose.material:material-icons-extended:$composeVersion")
     implementation("androidx.compose.runtime:runtime:$composeVersion")
+    implementation("androidx.compose.runtime:runtime-livedata:$composeVersion")
+    implementation("androidx.compose.runtime:runtime-rxjava2:$composeVersion")
     implementation("androidx.compose.ui:ui:$composeVersion")
 
     implementation("androidx.ui:ui-tooling:$composeVersion")
