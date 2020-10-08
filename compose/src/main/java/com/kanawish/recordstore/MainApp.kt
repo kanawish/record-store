@@ -21,7 +21,7 @@ class MainApp : Application() {
     private val activityLifecycleCallbacks: ToothpickActivityLifecycleCallbacks by inject()
 
     private val appModule = module {
-        // Initial state provided to app.
+        // Initial state provided to app. // E3
         // bind(ProductEditorState::class).toInstance(Closed)
 
         // TODO: Add modules as needed here.

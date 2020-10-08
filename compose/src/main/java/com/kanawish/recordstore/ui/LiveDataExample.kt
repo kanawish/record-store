@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.viewinterop.viewModel
 import com.kanawish.recordstore.state.Product
 import com.kanawish.recordstore.viewmodel.SimpleProductViewModel
+import androidx.compose.runtime.getValue
 
 @Composable
 fun LiveDataExample() {
