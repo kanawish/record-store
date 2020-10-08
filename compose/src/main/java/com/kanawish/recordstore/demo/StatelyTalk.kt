@@ -1,5 +1,6 @@
 package com.kanawish.recordstore.demo
 
+import com.kanawish.common.model.Reducer
 import com.kanawish.recordstore.state.Product
 import com.kanawish.recordstore.state.ProductEditorState
 
@@ -27,4 +28,52 @@ val statelyProducts = listOf(
         imageUrl = "file:///android_asset/stately/aleks-marinkovic-xcQzwkYZz1I-unsplash.jpg",
         price = 79999999
     ),
+)
+
+
+val productChanges = listOf<Reducer<Product>>(
+    Reducer { product ->
+        product.copy(price = 39999)
+    },
+    Reducer { product ->
+        product.copy(name = "Belle Isle Estate | One night stay")
+    },
+    Reducer { product ->
+        product.copy(imageUrl = "file:///android_asset/stately/k-mitch-hodge-63T_PV48c4o-unsplash.jpg")
+    },
+)
+
+/**
+ * Example usage:
+
+val undoStack = UndoStack<String>()
+fun undo() = undoStack.undo()
+fun Reducer<String>.undoable() = undoStack.undoable(this)
+or
+
+ */
+class History<T> {
+    private val _history = mutableListOf<T>()
+    val history:List<T> get() = _history
+    fun isEmpty() = _history.isEmpty()
+    fun undo(): Reducer<T> = Reducer { _history.removeLast() }
+
+    fun Reducer<T>.recorded(): Reducer<T> = Reducer { currentState ->
+        _history.add(currentState)
+        reduce(currentState)
+    }
+}
+
+
+fun bar() {
+    History<Product>().apply {
+        productChanges.forEach { action ->
+            action.recorded()
+        }
+
+    }
+}
+
+val productEditorChanges = listOf<(ProductEditorState) -> ProductEditorState>(
+
 )

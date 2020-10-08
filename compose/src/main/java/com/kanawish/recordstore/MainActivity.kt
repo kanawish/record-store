@@ -3,28 +3,29 @@ package com.kanawish.recordstore
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Text
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rxjava2.subscribeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.unit.dp
 import com.kanawish.common.model.Reducer
+import com.kanawish.recordstore.demo.statelyProducts
+import com.kanawish.recordstore.model.ProductEditorFlowStore
 import com.kanawish.recordstore.model.ProductObservableStore
+import com.kanawish.recordstore.model.editorReducer
 import com.kanawish.recordstore.state.Product
-import com.kanawish.recordstore.ui.LiveDataExample
+import com.kanawish.recordstore.state.ProductEditorState
 import com.kanawish.recordstore.ui.ProductCard
 import com.kanawish.recordstore.ui.theming.MyComposedTheme
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
+import timber.log.Timber
 import toothpick.ktp.delegate.inject
 
 @FlowPreview
@@ -32,16 +33,68 @@ import toothpick.ktp.delegate.inject
 class MainActivity : AppCompatActivity() {
 
     private val productObservableStore: ProductObservableStore by inject() // E2
+    private val productEditorFlowStore: ProductEditorFlowStore by inject() // E3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
             MyComposedTheme {
-                RxJavaExample(
-                    subscribeAsState = productObservableStore.modelState().subscribeAsState(Product()),
-                    processor = productObservableStore::process)
+                FlowExample(
+                    productEditorFlowStore.modelState().collectAsState(initial = ProductEditorState.Closed),
+                    productEditorFlowStore::process
+                )
             }
+        }
+    }
+}
+
+fun openNew() = editorReducer<ProductEditorState.Closed> { open(statelyProducts[2]) } // Hardcoded for the demo.
+
+fun edit(productReducer:Reducer<Product>) = editorReducer<ProductEditorState.Editing> { edit(productReducer) }
+fun cancel() = editorReducer<ProductEditorState.Editing> { cancel() }
+fun save() = editorReducer<ProductEditorState.Editing> { save().saved() } // Skips the async step for demo.
+fun delete() = editorReducer<ProductEditorState.Editing> { delete().deleted() } // Skips the async step for demo.
+
+@Composable
+fun FlowExample(collectAsState: State<ProductEditorState>, processor: (Reducer<ProductEditorState>) -> Unit) {
+    val editorState by collectAsState
+
+    ProductEditor(editorState, processor)
+}
+
+@Composable
+fun ProductEditor(state:ProductEditorState, processor: (Reducer<ProductEditorState>) -> Unit) {
+    Timber.i("ProductEditor called.")
+    when(state) {
+        is ProductEditorState.Closed -> {
+            Timber.i("Closed")
+            EditorButton("Create New Product") { processor(openNew()) }
+        }
+        is ProductEditorState.Editing -> {
+            Timber.i("Editing")
+            Column {
+                ProductCard(state.product)
+                NameEditField(state.product) { processor(edit(nameChange(it))) }
+                Row {
+                    EditorButton("-1") { processor(edit(priceChange(-100))) }
+                    EditorButton("+1") { processor(edit(priceChange(100))) }
+                }
+                Spacer(Modifier.preferredHeight(12.dp))
+                Row {
+                    EditorButton("Delete") { processor(delete()) }
+                    EditorButton("Cancel") { processor(cancel()) }
+                    EditorButton("Save") { processor(save()) }
+                }
+            }
+        }
+        is ProductEditorState.Saving -> {
+            Timber.i("Saving")
+            ProductCard(product = state.product)
+        }
+        is ProductEditorState.Deleting -> {
+            Timber.i("Deleting")
+            ProductCard(product = state.product)
         }
     }
 }
