@@ -7,7 +7,7 @@ val recordProducts = listOf(
         name="Joy Division, 'Unknown Pleasures'",
         description = "Designer Peter Saville's decision to go with pulsar radio waves is right up there with Martin Hannett’s spellbinding production in making this album a goth classic.\n\nDisney's Mickey Mouse shirt parody four decades later only reaffirmed its legend.",
         imageUrl = "file:///android_asset/records/joy_division_front.jpg",
-        price = 1999
+        price = 2499
     ),
     Product(
         name = "MadLib Beats | Beat Konducta",
@@ -19,6 +19,6 @@ val recordProducts = listOf(
         name = "Madlib | Shades of Blue",
         description = "Shades of Blue is a remix album by American hip hop musician Madlib over the archives of Blue Note Records. It was released by Blue Note Records on June 24, 2003.",
         imageUrl = "file:///android_asset/records/madlib_shades_front.jpg",
-        price = 1999
+        price = 2100
     ),
 )
