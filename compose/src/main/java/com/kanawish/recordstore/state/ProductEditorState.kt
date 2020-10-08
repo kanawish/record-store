@@ -1,41 +1,14 @@
 package com.kanawish.recordstore.state
 
-import com.kanawish.common.model.Reducer
 
 /**
- * NOTE: With new function interfaces, there's a chance we can cut a lot of
- *    boilerplate out, let the state themselves act as reducer constructors? TBD.
+ * Example 3 - Product Editor
  */
 sealed class ProductEditorState {
-    object Closed : ProductEditorState() {
-        fun edit(product: Product) = Editing(product)
-    }
-
-    data class Editing(val product: Product) : ProductEditorState() {
-        fun edit(reducer: Reducer<Product>) = copy(product = reducer.reduce(product))
-        fun save() = Saving(product)
-        fun delete() = Deleting(product)
-        fun cancel() = Closed
-    }
-
-    data class Saving(val product: Product) : ProductEditorState() {
-        fun saved() = Closed
-        fun error(msg: String) = Error(product, msg)
-    }
-
-    data class Deleting(val product: Product) : ProductEditorState() {
-        fun deleted() = Closed
-        fun error(msg: String) = Error(product, msg)
-    }
-
-    data class Error(val product: Product, val msg: String) {
-        fun edit(product: Product) = Editing(product)
-        fun cancel() = Closed
-    }
 }
 
 /*
-    UML Diagram to go along with this:
+    UML Diagram we're aiming for:
 
     @startuml
     [*] --> CLOSED

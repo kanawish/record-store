@@ -22,7 +22,7 @@ class MainApp : Application() {
 
     private val appModule = module {
         // Initial state provided to app.
-        bind(ProductEditorState::class).toInstance(Closed)
+        // bind(ProductEditorState::class).toInstance(Closed)
 
         // TODO: Add modules as needed here.
     }
