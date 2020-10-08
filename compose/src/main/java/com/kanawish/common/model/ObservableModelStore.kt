@@ -5,6 +5,8 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import timber.log.Timber
 
+// NOTE: E2, [C&P] without loggers.
+//   Explain at least process(r) & modelState()
 open class ObservableModelStore<S>(startingState: S) {
     private val intents = PublishRelay.create<Reducer<S>>()
 

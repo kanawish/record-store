@@ -26,7 +26,7 @@ val statelyProducts = listOf(
         name = "Aston Martin DB5",
         description = "The Aston Martin DB5 is a British luxury grand tourer (GT) that was made by Aston Martin and designed by the Italian coachbuilder Carrozzeria Touring Superleggera. Released in 1963, it was an evolution of the final series of DB4.",
         imageUrl = "file:///android_asset/stately/aleks-marinkovic-xcQzwkYZz1I-unsplash.jpg",
-        price = 799999999
+        price = 79999999
     ),
 )
 

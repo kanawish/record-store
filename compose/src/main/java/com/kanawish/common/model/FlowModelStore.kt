@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 
+// NOTE: E3 [C&P]
 @ExperimentalCoroutinesApi
 open class FlowModelStore<S>(startingState: S) {
     private val scope = MainScope()
