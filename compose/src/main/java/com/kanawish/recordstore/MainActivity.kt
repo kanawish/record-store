@@ -3,6 +3,7 @@ package com.kanawish.recordstore
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.platform.setContent
+import com.kanawish.recordstore.ui.LiveDataExample
 import com.kanawish.recordstore.ui.theming.MyComposedTheme
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -16,9 +17,8 @@ class MainActivity : AppCompatActivity() {
 
         setContent {
             MyComposedTheme {
+                LiveDataExample()
             }
         }
     }
 }
-
-

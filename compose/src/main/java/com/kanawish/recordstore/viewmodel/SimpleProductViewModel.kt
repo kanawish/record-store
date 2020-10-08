@@ -9,4 +9,11 @@ import java.lang.IllegalStateException
 
 /** Example 1 */
 class SimpleProductViewModel : ViewModel() {
+    private val _product = MutableLiveData(statelyProducts[0])
+    val product:LiveData<Product> = _product
+
+    fun onNameChangeEvent(newName:String) {
+        _product.value = _product.value?.copy(name=newName) ?:
+                throw IllegalStateException()
+    }
 }
